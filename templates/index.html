@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'output.css' %}">
+</head>
+<body class="bg-[#0D1317] text-white">
+    <nav class="w-full">
+        <h1 class="text-3xl lg:text-4xl py-8 font-mono text-center">Wish Me What?</h1>
+    </nav>
+    <hr>
+    <main class="max-w-3xl mx-auto pt-10">
+        <div class="flex flex-col gap-9 items-center justify-center">
+            <form method="post" class="flex gap-5 border">
+                {% csrf_token %}
+                <input type="text" name="wish" placeholder="Say something good.." class="bg-none outline-none pl-2 placeholder:italic w-60 font-mono" required>
+                <button class="px-3 border-l cursor-pointer outline-none py-1">Send</button>
+            </form>
+            <section>
+                {% for wish in wishes %}
+                    <p class="font-mono">I wish you <span class="font-semibold">{{wish.text}}</span></p>
+                {% endfor %}
+            </section>
+        </div>
+    </main>
+</body>
+</html>
