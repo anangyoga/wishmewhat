@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Wishes
+from .tasks import task_do_something
 
 # Create your views here.
 class IndexView(View):
@@ -16,5 +17,6 @@ class IndexView(View):
     def post(self, request):
         text = request.POST.get('wish')
 
+        task_do_something()
         Wishes.objects.create(text=text)
         return redirect('index')
