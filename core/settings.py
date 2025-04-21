@@ -16,6 +16,8 @@ import os
 
 load_dotenv(override=True)
 
+print("ALLOWED_HOSTS from env:", os.getenv("ALLOWED_HOSTS"))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,7 +31,8 @@ SECRET_KEY = 'django-insecure-%=+(jn9x@huo^wd^z&^5hxr3w7*1vowg6z5&oe)pwemqiqo%v6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 # Application definition
 
